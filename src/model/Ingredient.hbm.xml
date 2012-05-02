@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="model.Ingredient" table="ingredient_tbl">
+		<id name="ID" column="ID" type="integer">
+			<generator class="native" />
+		</id>
+		<property name="name" column="NAME" type="string" not-null="true" />
+		<property name="amount" column="AMOUNT" type="float" />
+		<property name="unit" column="UNIT" type="string" />
+		<many-to-one name="receipt" class="model.Receipt" column="RECEIPT_ID" cascade="all" />
+	</class>
+</hibernate-mapping>
