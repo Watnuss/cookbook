@@ -20,20 +20,16 @@
 			try {
 				hsession = sf.getCurrentSession();
 				transaction = hsession.beginTransaction();
-				//List<Receipt> result = (List<Receipt>) session.createQuery("from receipt").list();
-				//for(Receipt r : result) {
-				//	System.out.println(r.toString());
-				//}
-				//Receipt r = (Receipt) session.load(Receipt.class, 13);
 				Criteria c = hsession.createCriteria(Receipt.class);
+				
 				List<Receipt> res = c.list();
 				if (!res.isEmpty()) {
-					out.write("<table>");
-					out.write("<tr><td>Titel</td><td>Autor</td><td>Beschreibung</td><td>Schwierigkeit</td><td>Dauer</td><td>Bemerkung</td></tr>");
+					out.write("<ul>");
+					out.write("<h2>Rezepte");
 					for (Receipt r : res) {
-						out.write("<tr><td>" + r.getTitle() + "</td><td>" + r.getAuthor() + "</td><td>" + r.getDescription() + "</td><td>" + r.getDegree() + "</td><td>" + r.getDescription() + "</td><td>" + r.getNote() + "</td></tr>");
+						out.write("<li>" + r.getTitle() + " <a href=\"Details.jsp?id=" + r.getID() + "\">Details</a>");
 					}
-					out.write("</table>");
+					out.write("</ul>");
 				}
 				//System.out.println(r.toString());
 				transaction.commit();

@@ -36,7 +36,10 @@ public class Controller extends HttpServlet {
 			destination = "Confirm.jsp";
 		} else if (req.getParameter("confirmReceipt") != null) {
 			destination = "Edit.jsp";
-		} else {
+		} else if(req.getParameter("backToView") != null) {
+			destination = "View.jsp";
+		}
+		else {
 			destination = "Error.jsp";
 		}
 		System.out.println("destination: " + destination);
@@ -95,6 +98,9 @@ public class Controller extends HttpServlet {
 					+ req.getSession().getAttribute("receipt"));
 			req.getSession().removeAttribute("receipt");
 			destination = "Edit.jsp";
+			break;
+		case "View.jsp":
+			destination = "View.jsp";
 			break;
 		}
 
