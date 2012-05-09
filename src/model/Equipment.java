@@ -1,5 +1,7 @@
 package model;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class Equipment {
 	private int ID;
 	private String name;
@@ -13,6 +15,7 @@ public class Equipment {
 		ID = iD;
 	}
 
+	@NotEmpty(message = "Name must not be empty")
 	public String getName() {
 		return name;
 	}

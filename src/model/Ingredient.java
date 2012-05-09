@@ -1,5 +1,7 @@
 package model;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class Ingredient {
 
 	private int ID;
@@ -16,6 +18,7 @@ public class Ingredient {
 		ID = iD;
 	}
 
+	@NotEmpty(message = "Name must not be empty")
 	public String getName() {
 		return name;
 	}

@@ -3,6 +3,11 @@ package model;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+
+import org.hibernate.validator.constraints.*;
+
 
 public class Receipt {
 	
@@ -81,6 +86,7 @@ public class Receipt {
 		ID = iD;
 	}
 
+	@NotEmpty(message = "Title must not be empty")
 	public String getTitle() {
 		return title;
 	}
@@ -89,6 +95,7 @@ public class Receipt {
 		this.title = title;
 	}
 
+	@NotEmpty(message = "Author must not be empty")
 	public String getAuthor() {
 		return author;
 	}
@@ -97,6 +104,7 @@ public class Receipt {
 		this.author = author;
 	}
 
+	@NotEmpty(message = "Description must not be empty")
 	public String getDescription() {
 		return description;
 	}
@@ -121,6 +129,8 @@ public class Receipt {
 		this.duration = duration;
 	}
 
+	@Min(value = 1)
+	@Max(value = 5)
 	public int getDegree() {
 		return degree;
 	}
@@ -129,6 +139,7 @@ public class Receipt {
 		this.degree = degree;
 	}
 
+//	@NotEmpty(message = "Note must not be empty")
 	public String getNote() {
 		return note;
 	}
