@@ -6,10 +6,3 @@ Images
 Requirements
 ------------
 
-- Anzeigen aller Rezepte am Start, nur Titel
-- Details zu jedem Rezept nach Klick auf Button
-- Hinzufügen nach Button neben Übersicht
-- Hinzufügen zum Kochbuch auf Detailseite, mit zurückbutton
-- Kochbuchbutton zur Kochbuchübersicht
-- Kochübersicht: Zurück, Leeren, Entfernen, Drucken (Drucken: Anzahl der Rezepte in Popup)
-
