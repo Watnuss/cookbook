@@ -111,7 +111,46 @@ public class Controller extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		resp.getWriter().println("TestTest");
+		String destination = "";
+		
+		if(req.getParameter("addToCookbook") != null) {
+			destination = "addToCookbook";
+		} else if(req.getParameter("clearCookbook") != null) {
+			destination = "clearCookbook";
+		}
+		
+		switch(destination) {
+		case "addToCookbook":
+			String oldIds = (String) req.getSession().getAttribute("cookbook");
+			
+			if(oldIds == null) {
+				oldIds = req.getParameter("id");
+			} else {
+				boolean valid = true;
+				for(String id : oldIds.split(",")) {
+					if(id.equals(req.getParameter("id"))) {
+						valid = false;
+						break;
+					}
+				}
+				if(valid)
+					oldIds += "," + req.getParameter("id");
+			}
+			req.getSession().setAttribute("cookbook", oldIds);
+			
+			System.out.println("Current cookbook: " + oldIds);
+			
+			destination = "View.jsp";
+			break;
+		case "clearCookbook":
+			req.getSession().setAttribute("cookbook", null);
+			
+			destination  ="View.jsp";
+			break;
+		}
+		
+		getServletContext().getRequestDispatcher("/" + destination).forward(
+				req, resp);
 	}
 
 	private Receipt createReceipt(HttpServletRequest req) {

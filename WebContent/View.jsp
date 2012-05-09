@@ -11,7 +11,6 @@
 <title>Alle Rezepte anzeigen</title>
 </head>
 <body>
-	<table>
 		<%
 			SessionFactory sf = HibernateUtil.getSessionFactory();
 			org.hibernate.Session hsession = null;
@@ -25,9 +24,12 @@
 				List<Receipt> res = c.list();
 				if (!res.isEmpty()) {
 					out.write("<ul>");
-					out.write("<h2>Rezepte");
+					out.write("<h2>Rezepte</h2>");
 					for (Receipt r : res) {
-						out.write("<li>" + r.getTitle() + " <a href=\"Details.jsp?id=" + r.getID() + "\">Details</a>");
+						out.write("<li>" + r.getTitle()
+								+ " <a href=\"Details.jsp?id="
+								+ r.getID() + "\">Details</a> <a href=\"Controller?addToCookbook&id="
+								+ r.getID() + "\">Zum Kochbuch hinzufügen</a>");
 					}
 					out.write("</ul>");
 				}
@@ -37,6 +39,6 @@
 				System.out.println(ex.toString());
 			}
 		%>
-	</table>
+		<a href="ViewCookbook.jsp">Kochbuch</a>
 </body>
 </html>
