@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import util.RecipeExporter;
+
 import model.Ingredient;
 import model.Receipt;
 import model.Equipment;
@@ -93,9 +95,11 @@ public class Controller extends HttpServlet {
 			break;
 		case "Edit.jsp":
 			/* TODO add a finish/"thank you" page */
-			// RecipeExporter.export(receipt);
-			System.out.println("Saving Receipt: "
-					+ req.getSession().getAttribute("receipt"));
+			receipt = (Receipt) req.getSession().getAttribute("receipt");
+			if(receipt != null)
+				RecipeExporter.export(receipt);
+			//System.out.println("Saving Receipt: "
+			//		+ req.getSession().getAttribute("receipt"));
 			req.getSession().removeAttribute("receipt");
 			destination = "Edit.jsp";
 			break;
